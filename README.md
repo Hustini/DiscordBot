@@ -1,4 +1,4 @@
-## I dont have a name for this Bot
+## I dont have a name for this Bot yet
 ```
 I asked my friend what the bot should be capable of doing.
 They came up with this:
