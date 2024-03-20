@@ -1,6 +1,29 @@
-def main():
+import inspect
+import discord
+from discord.commands import Option
+from discord.ext import commands
 
-    pass
+
+def main():
+    intents = discord.Intents.default()
+    intents.message_content = True
+    bot = commands.Bot(intents=intents, command_prefix='$', debug_guilds=[1215352459296243783])
+
+    @bot.event
+    async def on_ready():
+        print(f'{bot.user} ready')
+
+    @bot.command()  # says hello
+    async def hello(ctx):
+        frame = inspect.currentframe()
+        print(f'{frame.f_code.co_name} called')
+        await ctx.send('Hello')
+
+    @bot.slash_command()  # greets member
+    async def greet(ctx, user: Option(discord.Member)):
+        await ctx.respond(f'Hallo {user.mention}')
+
+    bot.run('')
 
 
 if __name__ == '__main__':
