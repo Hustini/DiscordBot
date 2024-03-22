@@ -25,6 +25,15 @@ def main():
     async def greet(ctx, user: Option(discord.Member)):
         await ctx.respond(f'Hallo {user.mention}')
 
+    @bot.command()
+    async def join(ctx):
+        channel = ctx.author.voice.channel
+        await channel.connect()
+
+    @bot.command()
+    async def leave(ctx):
+        await ctx.voice_client.disconnect()
+
     dotenv.load_dotenv()
     token = str(os.getenv("TOKEN"))
     bot.run(token)
