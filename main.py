@@ -1,5 +1,7 @@
 import inspect
+import os
 import discord
+import dotenv
 from discord.commands import Option
 from discord.ext import commands
 
@@ -23,7 +25,9 @@ def main():
     async def greet(ctx, user: Option(discord.Member)):
         await ctx.respond(f'Hallo {user.mention}')
 
-    bot.run('')
+    dotenv.load_dotenv()
+    token = str(os.getenv("TOKEN"))
+    bot.run(token)
 
 
 if __name__ == '__main__':
