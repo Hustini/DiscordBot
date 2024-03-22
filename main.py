@@ -28,10 +28,13 @@ def main():
     @bot.command()
     async def join(ctx):
         channel = ctx.author.voice.channel
+        print(f'{channel} joined')
         await channel.connect()
 
     @bot.command()
     async def leave(ctx):
+        channel = ctx.author.voice.channel
+        print(f'{channel} left')
         await ctx.voice_client.disconnect()
 
     dotenv.load_dotenv()
